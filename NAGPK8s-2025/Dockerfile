@@ -7,10 +7,10 @@ EXPOSE 443
 
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 WORKDIR /src
-COPY ["NAGPK8s/NAGPK8s-2025.csproj", "NAGPK8s/"]
-RUN dotnet restore "NAGPK8s/NAGPK8s-2025.csproj"
+COPY ["NAGPK8s-2025/NAGPK8s-2025.csproj", "NAGPK8s-2025/"]
+RUN dotnet restore "NAGPK8s-2025/NAGPK8s-2025.csproj"
 COPY . .
-WORKDIR "/src/NAGPK8s"
+WORKDIR "/src/NAGPK8s-2025"
 RUN dotnet build "NAGPK8s-2025.csproj" -c Release -o /app/build
 
 FROM build AS publish
