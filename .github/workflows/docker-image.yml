@@ -27,6 +27,6 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: .
-          file: NAGPK8s/Dockerfile
+          file: NAGPK8s-2025/Dockerfile
           push: true
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/nagp2025kubernetesassignment:latest
