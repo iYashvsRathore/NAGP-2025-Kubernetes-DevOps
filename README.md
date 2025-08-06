@@ -12,16 +12,10 @@ To deploy the solution, follow these steps:
 4. Create the Volumes and Storage using the provided deployment files (*~/.K8s/Volumes*).
     1. `$ kubectl apply -f persistent-volume-claim.yaml`
     2. `$ kubectl apply -f storage-class.yaml`
-5. Install the ingress controller:
-    `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.9.4/deploy/static/provider/cloud/deploy.yaml`
-6. Deploy ingress:
-    `$ kubectl apply -f api-ingress.yaml`
-7. Deploy the microservice and database and their services on the Kubernetes cluster using the provided deployment files (*~/.K8s/Microservice* and *~/.K8s/Database*).
-    1. `$ kubectl apply -f api-deployment.yaml`
-    2. `$ kubectl apply -f api-service.yaml`
-    3. `$ kubectl apply -f database-deployment.yaml`
-    4. `$ kubectl apply -f database-service.yaml`
-8. Create the Database and Tables in the Database using the following commands.\
+5. Deploy the database and its services on the Kubernetes cluster using the provided deployment files (*~/.K8s/Database*).
+    1. `$ kubectl apply -f database-deployment.yaml`
+    2. `$ kubectl apply -f database-service.yaml`
+6. Create the Database and Tables in the Database using the following commands.\
     
     `SA_PASSWORD=$(kubectl get secret SA_PASSWORD -o jsonpath='{.data.<data-key>}' | base64 --decode)`
    
@@ -34,7 +28,14 @@ To deploy the solution, follow these steps:
           [Name] NVARCHAR(100) NULL, 
           [EmailID] NVARCHAR(100) NULL
       )'`
-9. Access the API from outside the cluster using the Ingress Controller LoadBalancer external IP.
+7. Install the ingress controller:
+    `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.9.4/deploy/static/provider/cloud/deploy.yaml`
+8. Deploy the microservice and its services on the Kubernetes cluster using the provided deployment files (*~/.K8s/Microservice*).
+    1. `$ kubectl apply -f api-deployment.yaml`
+    2. `$ kubectl apply -f api-service.yaml`
+9. Deploy ingress:
+    `$ kubectl apply -f api-ingress.yaml`
+10. Access the API from outside the cluster using the Ingress Controller external IP.
 
 
 # Important Resources
