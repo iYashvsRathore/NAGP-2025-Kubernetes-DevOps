@@ -5,23 +5,23 @@ This repository contains the solution for the Kubernetes & DevOps Advanced assig
 To deploy the solution, follow these steps:
 
 1. Set up a Kubernetes cluster.
-2. Run the GitHub Action to build the Docker image for the API project using the provided Dockerfile and Push the Docker image to *iyashvsrathore* Docker Hub repository.
+2. Run the GitHub Action to build the Docker image for the API project using the provided Dockerfile and push the Docker image to the *iyashvsrathore* Docker Hub repository.
 3. Configure the necessary environment variables and secrets using the provided deployment files (*~/.K8s/Configuration & Secret*).
     1. `$ kubectl apply -f configmap.yaml`
     2. `$ kubectl apply -f secret.yaml`
 4. Create the Volumes and Storage using the provided deployment files (*~/.K8s/Volumes*).
     1. `$ kubectl apply -f persistent-volume-claim.yaml`
     2. `$ kubectl apply -f storage-class.yaml`
-5. Install ingress controller:
+5. Install the ingress controller:
     `kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.9.4/deploy/static/provider/cloud/deploy.yaml`
-6. deploy ingress:
+6. Deploy ingress:
     `$ kubectl apply -f api-ingress.yaml`
 7. Deploy the microservice and database and their services on the Kubernetes cluster using the provided deployment files (*~/.K8s/Microservice* and *~/.K8s/Database*).
     1. `$ kubectl apply -f api-deployment.yaml`
     2. `$ kubectl apply -f api-service.yaml`
     3. `$ kubectl apply -f database-deployment.yaml`
     4. `$ kubectl apply -f database-service.yaml`
-8. Create the Database and Tables in the Database using folowwing commands.\
+8. Create the Database and Tables in the Database using the following commands.\
     
     `SA_PASSWORD=$(kubectl get secret SA_PASSWORD -o jsonpath='{.data.<data-key>}' | base64 --decode)`
    
@@ -40,6 +40,7 @@ To deploy the solution, follow these steps:
 # Important Resources
 
 ## Link for the code repository :
+[https://github.com/iYashvsRathore/NAGP-2025-Kubernetes-DevOps](https://github.com/iYashvsRathore/NAGP-2025-Kubernetes-DevOps)
 
 
 ## Docker hub URL for docker images
@@ -50,6 +51,18 @@ To deploy the solution, follow these steps:
 
 
 ## Docker File Path
+[Docker File](https://github.com/iYashvsRathore/NAGP-2025-Kubernetes-DevOps/blob/master/NAGPK8s-2025/Dockerfile): https://github.com/iYashvsRathore/NAGP-2025-Kubernetes-DevOps/blob/master/NAGPK8s-2025/Dockerfile
 
 
 ## Kubernetes YAML Files
+
+1. [API Deployment](https://github.com/iYashvsRathore/NAGP-2025-Kubernetes-DevOps/blob/master/.K8s/Microservice/api-deployment.yaml) File
+2. [API Service](https://github.com/iYashvsRathore/NAGP-2025-Kubernetes-DevOps/blob/master/.K8s/Microservice/api-service.yaml) File
+3. [Ingress](https://github.com/iYashvsRathore/NAGP-2025-Kubernetes-DevOps/blob/master/.K8s/Microservice/api-ingress.yaml) File
+4. [Database Deployment](https://github.com/iYashvsRathore/NAGP-2025-Kubernetes-DevOps/blob/master/.K8s/Database/database-deployment.yaml) File
+5. [Database Service](https://github.com/iYashvsRathore/NAGP-2025-Kubernetes-DevOps/blob/master/.K8s/Database/database-service.yaml) File
+6. [Persistence Volume Claim](https://github.com/iYashvsRathore/NAGP-2025-Kubernetes-DevOps/blob/master/.K8s/Volumes/persistent-volume-claim.yaml) File:
+7. [Storage Class](https://github.com/iYashvsRathore/NAGP-2025-Kubernetes-DevOps/blob/master/.K8s/Volumes/storage-class.yaml) File
+8. [Config Map](https://github.com/iYashvsRathore/NAGP-2025-Kubernetes-DevOps/blob/master/.K8s/Configuration%20%26%20Secret/configmap.yaml) File
+9. [Secret](https://github.com/iYashvsRathore/NAGP-2025-Kubernetes-DevOps/blob/master/.K8s/Configuration%20%26%20Secret/secret.yaml) File
+
